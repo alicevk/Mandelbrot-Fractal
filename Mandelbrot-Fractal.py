@@ -33,3 +33,4 @@ plt.show()
 # itertools
 # functools
 # imshow
+# pillow
