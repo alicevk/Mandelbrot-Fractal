@@ -1,6 +1,7 @@
 import cmath
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+from itertools import product
 
 def mandelbrotCheck(c):
     zList = [0]
@@ -15,12 +16,11 @@ def mandelbrotCheck(c):
 def graphVals(x1,x2,step):
     xList = []
     yList = []
-    for a in range(x1,x2+6,step):
-        for b in range(x1,x2+6, step):
-            z = complex(a/x2,b/x2)
-            if mandelbrotCheck(z):
-                xList.append(a/x2)
-                yList.append(b/x2)
+    for a, b in product(range(x1,x2+6,step),range(x1,x2+6,step)):
+        z = complex(a/x2,b/x2)
+        if mandelbrotCheck(z):
+            xList.append(a/x2)
+            yList.append(b/x2)
     return(xList,yList)
 
 xVals, yVals = graphVals(-200,100,1)
@@ -30,7 +30,8 @@ plt.show()
 
 
 # ----- TO DO:
-# itertools
+# matrix --> x = np.array(range(10,100,10)).reshape(3,3)
+# itertools ☑
 # functools
 # imshow
 # pillow
