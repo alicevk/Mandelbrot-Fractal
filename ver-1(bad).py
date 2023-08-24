@@ -26,12 +26,13 @@ def graphVals(x1,x2,step):
 xVals, yVals = graphVals(-200,100,1)
 
 plt.scatter(xVals,yVals)
+plt.savefig(f'./figs/v1-den{3e2}_rng{2e3}.png')
 plt.show()
 
 
 # ----- TO DO:
-# matrix --> x = np.array(range(10,100,10)).reshape(3,3)
-# itertools ☑
-# functools
-# imshow
-# pillow
+# numpy array [?]
+# itertools [x]
+# functools [o]
+# imshow [o]
+# pillow [o]

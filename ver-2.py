@@ -21,12 +21,15 @@ def Mandelbrot(den, rng):
     # Graph plot
     abs = np.abs(nums)
 
-    plt.imshow(abs, interpolation='none')
-    plt.savefig(f'./figs/den1e{int(np.log10(den))}_rng1e{int(np.log10(rng))}.png')
+    plt.imshow(abs, interpolation='none', aspect='auto')
+    plt.xticks([])
+    plt.yticks([])
+
+    plt.savefig(f'./figs/v2-den1e{int(np.log10(den))}_rng1e{int(np.log10(rng))}.png')
     plt.show()
     
 # Parameters
 den = 1e3
-rng = 1e3
+rng = 1e4
 
 Mandelbrot(den, rng)
