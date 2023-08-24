@@ -1,18 +1,32 @@
+# Imports
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Malha representativa do plano dos complexos de -2 a 0.5 em x, e de -i a i em y
-x = np.linspace(-2, 0.5, 100)
-y = np.linspace(-1j, 1j, 100)
-malha = np.meshgrid(x, y)
-teste = malha[0]+malha[1]
-
-numero = np.zeros(100)
-for _ in range(100000):
-    numero = (numero**2)+teste
-    numero = (np.abs(numero)<2)*numero
+# Mandelbrot plot function
+def Mandelbrot(den, rng):
+    den, rng = int(den), int(rng)
     
-a = numero!=0
+    # Complex plane mesh array
+    x = np.linspace(-2, 0.5, den)
+    y = np.linspace(-1j, 1j, den)
+    mesh = np.meshgrid(x, y)
+    mesh = mesh[0]+mesh[1]
 
-plt.imshow(a, interpolation='none')
-plt.show()
+    # Mandelbrot check (?)
+    nums = np.zeros(den)
+    for _ in range(rng):
+        nums = (nums**2)+mesh
+        nums = (np.abs(nums)<2)*nums
+
+    # Graph plot
+    abs = np.abs(nums)
+
+    plt.imshow(abs, interpolation='none')
+    plt.savefig(f'./figs/den1e{int(np.log10(den))}_rng1e{int(np.log10(rng))}.png')
+    plt.show()
+    
+# Parameters
+den = 1e3
+rng = 1e3
+
+Mandelbrot(den, rng)
