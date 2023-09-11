@@ -1,7 +1,16 @@
+# ---------------------------------------------------------------------------- #
+#                                     SETUP                                    #
+# ---------------------------------------------------------------------------- #
+
 import cmath
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 from itertools import product
+
+
+# ---------------------------------------------------------------------------- #
+#                                   FUNCTIONS                                  #
+# ---------------------------------------------------------------------------- #
 
 def mandelbrotCheck(c):
     zList = [0]
@@ -23,14 +32,21 @@ def graphVals(x1,x2,step):
             yList.append(b/x2)
     return(xList,yList)
 
+
+# ---------------------------------------------------------------------------- #
+#                                    SCRIPT                                    #
+# ---------------------------------------------------------------------------- #
+
 xVals, yVals = graphVals(-200,100,1)
 
+plt.xticks([])
+plt.yticks([])
 plt.scatter(xVals,yVals)
-plt.savefig(f'./figs/v1-den{3e2}_rng{2e3}.png')
+plt.savefig(f'./figs/v1-qual{300}_iter{2000}.png')
 plt.show()
 
 
-# ----- TO DO:
+# ----------------------------------- TO DO ---------------------------------- #
 # numpy array [?]
 # itertools [x]
 # functools [o]
