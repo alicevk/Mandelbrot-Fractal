@@ -10,8 +10,8 @@ import matplotlib.pyplot as plt
 #                                  PARAMETERS                                  #
 # ---------------------------------------------------------------------------- #
 
-quality = 1e3 # Related to pixel density, image quality and size
-iterations = 1e3 # Related to precision, number of iterations
+quality = 1e4 # Related to pixel density, image quality and size
+iterations = 1e4 # Related to precision, number of iterations
 
 
 # ---------------------------------------------------------------------------- #
