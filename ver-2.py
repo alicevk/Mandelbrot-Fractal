@@ -44,8 +44,8 @@ def cmapByPower(array, exponent:float, c1:float, c2:float):
     colors = []
     
     for dist in sorted:
-        color = dist**exponent
-        hsv = (1+c1*color, 1-c2*color, 0.9)
+        power = dist**exponent
+        hsv = (1+c1*power, 1-c2*power, 0.9)
         colors.append(hsv)
         
     colormap = ListedColormap(colors)
@@ -59,20 +59,21 @@ def Mandelbrot(quality:int, iterations:int, ver='A'):
     
     The function generates a plot of the Mandelbrot set based on the specified
     parameters. It creates a complex plane mesh and iterates over it to
-    determine set membership using one of two methods ('A' or 'B').
+    determine set membership and finally plots it using one of three methods
+    available ('A', 'B' or 'C').
     
     Args:
         quality (int): Array size, equivalent to the graph's pixel density.
         iterations (int): Number of iterations to determine set membership.
-        ver (str, optional): Which version of the Mandelbrot check/rendering
-         method to use; either 'A' or 'B'. Defaults to 'A'.
-        coloring (bool, optional): If True, apply custom coloring to the Mandelbrot
-         set; otherwise, use the 'viridis' colormap. Defaults to False.
+        ver (str, optional): Which version of the Mandelbrot check/coloring
+         method to use; either 'A', 'B' or 'C'. Defaults to 'A'.
 
     Raises:
         ValueError: If an invalid value is provided for the 'ver' parameter.
     '''
-    VALID_VERS = {'A', 'B', 'C'}
+    VALID_VERS = {'A', # Regular version: applies mask before plotting
+                  'B', # Applies mask during iterations, but not before plotting
+                  'C'} # Regular version, but coloring according to power-law
     
     # Complex plane mesh array
     x = np.linspace(-2, 0.5, quality)
@@ -83,7 +84,7 @@ def Mandelbrot(quality:int, iterations:int, ver='A'):
     # Mandelbrot check
     nums = np.zeros(quality)
     
-    # (Version A)
+    # (Version A and C)
     if ver in ['A', 'C']:
         for current in range(iterations):
             nums = (nums**2)+mesh
@@ -100,6 +101,7 @@ def Mandelbrot(quality:int, iterations:int, ver='A'):
             # Anxiety reliever :)
             print(f'\nProcessing: {round(current/iterations*100, 2)}% done.')
             
+    # Raise error
     else: raise ValueError(f'Invalid value for \'ver\': Valid values are \
 {VALID_VERS}. \'{ver}\' was provided.')
 
@@ -119,7 +121,7 @@ def Mandelbrot(quality:int, iterations:int, ver='A'):
 #                                    SCRIPT                                    #
 # ---------------------------------------------------------------------------- #
 
-Mandelbrot(quality, iterations, ver='C')
+Mandelbrot(quality, iterations)
 
 
 # ----------------------------------- TO DO ---------------------------------- #
