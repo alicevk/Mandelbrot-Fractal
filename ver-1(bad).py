@@ -39,9 +39,10 @@ def graphVals(x1,x2,step):
 
 xVals, yVals = graphVals(-200,100,1)
 
-plt.xticks([])
-plt.yticks([])
 plt.scatter(xVals,yVals)
+plt.axis('off')
+plt.tight_layout()
+
 plt.savefig(f'./figs/v1-qual{300}_iter{2000}.png')
 plt.show()
 

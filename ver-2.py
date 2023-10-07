@@ -54,8 +54,8 @@ def Mandelbrot(quality, iterations, ver='A'):
     abs = np.abs(nums)
 
     plt.imshow(abs, interpolation='none', aspect='auto')
-    plt.xticks([])
-    plt.yticks([])
+    plt.axis('off')
+    plt.tight_layout()
 
     plt.savefig(f'./figs/v2{ver}-qual{int(quality)}_iter{int(iterations)}.png')
     plt.show()
